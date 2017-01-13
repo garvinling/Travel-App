@@ -7,9 +7,7 @@ class TripView extends Component{
 
 		super(props);
 
-		this.state = {
-
-
+		this.state ={
 
 		};
 
@@ -20,7 +18,7 @@ class TripView extends Component{
 
 		return(
 
-			<h1>TRIP</h1>
+			<h1>Planning a trip to {this.props.location} for {this.props.duration} days</h1>
 
 		);
 

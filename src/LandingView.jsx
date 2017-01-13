@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
-
 import './styles/LandingView.css';
 import './styles/bootstrap.min.css';
+import TripView from './TripView';
 
 // console.log(store.getState());
 class LandingView extends Component{
@@ -14,13 +13,14 @@ class LandingView extends Component{
 			step : 0,
 			location:'',
 			duration:'',
-			travelers:''
+			travelers:'',
+
 		}
 	
-		 this.moveForward      = this.moveForward.bind(this);
 		 this.saveState   	   = this.saveState.bind(this);
 		 this.handleFormChange = this.handleFormChange.bind(this);
 		 this.submitForm       = this.submitForm.bind(this);
+		 this.renderForm       = this.renderForm.bind(this);
 	}
 	
 
@@ -45,33 +45,33 @@ class LandingView extends Component{
 
 	renderForm(){
 
-		switch(this.state.step){
+		if(this.state.step === 0){
+			return(
 
-			case 0: 
-				return (
-					<div>
-						<h1>Where do you want to go?</h1>
-						<input className="big-input" type="text" name="location" id="location_input" value={this.state.location} onChange={this.handleFormChange}/> 
+				<div className="landing-container">
+					<img src="plane.gif" alt="plane"/>
+					<form method="post" onSubmit={this.submitForm}>
+					<div className="form-group">
+						<h4>Where to?</h4>
+						<input className="big-input" type="text"  name="location" id="location_input" value={this.state.location} onChange={this.handleFormChange}/> 
 						<br/>
 					</div>
-				);
-			case 1: 
-				return (
-					<div>
-						<h1>How long do you want to go for?</h1>
-						<input className="big-input" type="text" name="location" id="location_input"/>
+					<div className="form-group">
+						<h4>How many days?</h4>
+						<input className="big-input"  type="text" name="duration" id="duration_input" value={this.state.duration} onChange={this.handleFormChange}/>
 					</div>
-				);
-			case 2: 
-				return (
-					<div>
-						<h1>How many people are going?</h1>
-						<input className="big-input" type="number" name="travelers" id="travelers_input"/>
-					</div>
-				);
-			default:
-				return <h1>Oops! You really should not be here.</h1>
+					<button className="btn btn-primary form-button">GO</button>
+					</form>
+				</div>
 
+			);
+
+		}else if(this.state.step === 1){
+
+			return(
+
+				<TripView location={this.state.location} duration={this.state.duration}/>
+			);
 
 		}
 
@@ -82,34 +82,17 @@ class LandingView extends Component{
 	submitForm(e){
 
 		e.preventDefault();
-		browserHistory.push('/trip');
-
+		this.setState({step:1});
 	}
 
 
-	moveForward(){
-
-	}
 
 
 	render(){
 
 		return( 
-			<div className="landing-container">
-				<img src="plane.gif" alt="plane"/>
-				<form method="post" onSubmit={this.submitForm}>
-				<div className="form-group">
-					<h4>Where to?</h4>
-					<input className="big-input" type="text"  name="location" id="location_input" value={this.state.location} onChange={this.handleFormChange}/> 
-					<br/>
-				</div>
-				<div className="form-group">
-					<h4>How many days?</h4>
-					<input className="big-input"  type="text" name="duration" id="duration_input" value={this.state.duration} onChange={this.handleFormChange}/>
-				</div>
-
-				<button className="btn btn-primary form-button" onClick={this.saveState}>GO</button>
-				</form>
+			<div>
+				{this.renderForm()}
 			</div>
 		);
 
