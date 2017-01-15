@@ -1,0 +1,54 @@
+
+.trip-container{
+
+	height:100vh;
+
+}
+
+
+.map-container{
+
+	height:100%;
+	border-left:1px solid #d8d8d8;
+
+}
+
+
+.planner-container{
+
+	height:100%;
+	padding:30px;
+	padding-left:75px;
+
+
+}
+
+
+.trip-status-container{
+	font-size:1.2em;
+}
+
+
+.search-container{
+
+
+
+}
+
+
+.activity-search{
+
+	border:none;
+	border-bottom: 1px solid #d8d8d8;
+	width:540px;
+	margin-top:50px;
+	font-weight:300;
+}
+
+
+.activity-search:focus{
+
+	outline:none;
+	border-bottom:3px solid #f39c12;
+
+}

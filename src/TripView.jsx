@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 
+import Navbar from './Navbar';
+import Planner from './PlannerView';
+import Map from './MapView';
+
+import './styles/TripView.css';
 
 class TripView extends Component{
 
@@ -9,8 +14,10 @@ class TripView extends Component{
 
 		this.state ={
 
-		};
+			duration: this.props.duration,
+			location: this.props.location
 
+		};
 	}
 
 
@@ -18,7 +25,19 @@ class TripView extends Component{
 
 		return(
 
-			<h1>Planning a trip to {this.props.location} for {this.props.duration} days</h1>
+			<div className="row trip-container">
+				<Navbar/>
+
+				<div className="col-md-7 planner-container">
+					<Planner location={this.state.location} duration={this.state.duration}/>
+				</div>
+
+				<div className="col-md-5 map-container">
+					<Map/>
+				</div>
+	
+			</div>
+
 
 		);
 
