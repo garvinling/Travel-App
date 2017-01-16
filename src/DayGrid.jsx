@@ -27,7 +27,7 @@ class DayGrid extends Component{
 
 					grid.push(
 
-							<div className="row grid-row">
+							<div key={rowCount} className="row grid-row">
 								<div className="col-md-6">
 									<Day day={dayCount}/>
 								</div>
@@ -42,7 +42,7 @@ class DayGrid extends Component{
 
 					grid.push(
 
-						<div className="row grid-row">
+						<div key={rowCount} className="row grid-row">
 							<div className="col-md-6">
 								<Day day={dayCount}/>
 							</div>
