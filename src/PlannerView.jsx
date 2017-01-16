@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import DayGrid from './DayGrid';
 
 import './styles/PlannerView.css';
 
@@ -17,7 +18,7 @@ class PlannerView extends Component{
 					<div className="row search-container">
 
 						<input type="text" placeholder="Search for Activities" className="activity-search"/>
-
+						<DayGrid days={this.props.duration}/>
 					</div>
 
 				</div>
